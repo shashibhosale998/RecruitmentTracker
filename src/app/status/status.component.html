@@ -1,0 +1,58 @@
+<div class="container mx-auto p-4">
+    <!-- Title and Ticket Info -->
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-gray-900">{{ ticket.ticketRaiseName }}</h1>
+      <p class="mt-2 text-gray-600">Job Title: {{ ticket.jobTitle }}</p>
+      <p class="mt-2 text-gray-600">Ticket ID: {{ ticket.ticketRaiseId }}</p>
+    </div>
+  
+    <!-- Recruitment Status Section -->
+    <div class="bg-white rounded-lg shadow-sm">
+      <div class="p-6 border-b">
+        <h2 class="text-lg font-semibold">Recruitment Status</h2>
+      </div>
+  
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr class="bg-gray-50">
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Job ID</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Position</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Team</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hiring Rounds</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Progress</th>
+            </tr>
+          </thead>
+  
+          <!-- Ticket Data Row -->
+          <tr *ngIf="ticket && ticket.ticketRaiseId">
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ ticket.ticketRaiseId }}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ ticket.jobTitle }}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ ticket.ticketRaiseName }}</td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="flex space-x-2">
+                <a *ngFor="let round of ['L0', 'L1', 'L2', 'L3', 'L4']; let i = index"
+                   href="javascript:void(0);"
+                   class="px-2 py-1 text-xs rounded"
+                   [ngClass]="getRoundClass(i)">
+                  {{ round }}
+                </a>
+              </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="bg-custom rounded-full h-2" [style.width.%]="getProgress()"></div>
+              </div>
+            </td>
+          </tr>
+  
+          <!-- No Data Row -->
+          <tr *ngIf="!ticket.ticketRaiseId">
+            <td colspan="5" class="text-center text-sm text-gray-500 py-4">No ticket details available</td>
+          </tr>
+  
+        </table>
+      </div>
+    </div>
+  </div>
+  

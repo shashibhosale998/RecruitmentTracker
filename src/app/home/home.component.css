@@ -1,0 +1,124 @@
+/* Basic Styling */
+body {
+  font-family: sans-serif;
+  margin: 0;
+  background-color: #f4f4f4; /* Light gray background */
+  display: flex;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 200px;
+  background-color: white; /* Dark sidebar */
+  color: black;
+  padding: 20px;
+}
+
+.logo {
+  margin-bottom: 20px;
+}
+
+.logo img {
+  max-width: 100%; /* Make sure logo fits */
+  height: auto;
+}
+
+.sidebar nav a {
+  display: block;
+  padding: 10px 0;
+  color: black;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.sidebar nav a:hover, .sidebar nav a.active {
+  background-color: black;/* Slightly lighter on hover/active */
+  color: white;
+}
+
+.sidebar nav a i {
+  margin-right: 10px;
+}
+
+/* Main Content Styles */
+.content {
+  flex: 1;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between; /* Align items on opposite ends */
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+h1 {
+  color: #333;
+}
+
+.user-info {
+  text-align: right; /* Align user info to the right */
+}
+
+.user-name {
+  font-weight: bold;
+}
+
+/* Ticket Status Table Styles */
+.ticket-status {
+  overflow-x: auto; /* Add horizontal scroll if needed */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #eee; /* Slightly darker header */
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9; /* Very light gray for even rows */
+}
+
+.open-button {
+  background-color: black; /* Green */
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Responsive Design (Basic Example) */
+@media (max-width: 768px) {
+  .sidebar {
+      width: 150px; /* Adjust sidebar width */
+  }
+
+  .content {
+      padding: 10px; /* Reduce padding */
+  }
+
+  table {
+      font-size: 14px; /* Smaller font on smaller screens */
+  }
+}

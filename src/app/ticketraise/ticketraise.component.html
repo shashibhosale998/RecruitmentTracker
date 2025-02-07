@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Raise Form</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Raise a Ticket</h1>
+        <form (ngSubmit)="onSubmit(ticketForm)" #ticketForm="ngForm" class="ticket-form">
+            <div class="form-group">
+                <label for="TicketRaiseId">Ticket Raise ID</label>
+                <input
+                    type="number"
+                    id="TicketRaiseId"
+                    name="TicketRaiseId"
+                    [(ngModel)]="ticketRaise.ticketRaiseId"
+                    required
+                    #TicketRaiseIdModel="ngModel"
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="TicketRaiseName">Ticket Raise Name</label>
+                <input
+                    type="text"
+                    id="TicketRaiseName"
+                    name="TicketRaiseName"
+                    [(ngModel)]="ticketRaise.ticketRaiseName"
+                    required
+                    #TicketRaiseNameModel="ngModel"
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="JobTitle">Job Title</label>
+                <input
+                    type="text"
+                    id="JobTitle"
+                    name="JobTitle"
+                    [(ngModel)]="ticketRaise.jobTitle"
+                    required
+                    #JobTitleModel="ngModel"
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="Description">Description</label>
+                <textarea
+                    id="Description"
+                    name="Description"
+                    [(ngModel)]="ticketRaise.description"
+                    required
+                    #DescriptionModel="ngModel"
+                    rows="4"
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="NumberOfOpenings">Number of Openings</label>
+                <input
+                    type="number"
+                    id="NumberOfOpenings"
+                    name="NumberOfOpenings"
+                    [(ngModel)]="ticketRaise.numberOfOpenings"
+                    required
+                    #NumberOfOpeningsModel="ngModel"
+                />
+            </div>
+
+            <button type="submit" [disabled]="ticketForm.invalid">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

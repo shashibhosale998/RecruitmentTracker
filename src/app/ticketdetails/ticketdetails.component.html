@@ -1,0 +1,91 @@
+<div class="flex h-screen">
+  <aside class="fixed inset-y-0 left-0 w-64 bg-white shadow-lg z-30">
+    <div class="flex items-center justify-between h-16 border-b px-4">
+      <span class="text-xl font-semibold text-custom flex items-center">
+        <div class="w-8 h-8 mr-2">
+          <img src="https://firstbitsolutions.com/wp-content/uploads/2024/08/cropped-Fbs-Logo-Png-01-1-192x192.png"
+            alt="Logo" class="w-full h-full object-contain" id="logo-image" />
+        </div>
+        Firstbit Admin
+      </span>
+      <button class="text-gray-500 hover:text-custom" id="change-logo-btn">
+        <i class="fas fa-edit"></i>
+      </button>
+    </div>
+    <nav class="mt-6">
+      <div class="px-4 space-y-2">
+        <a (click)="navigatedisplaydash()" class="flex items-center px-4 py-2.5 text-gray-600 hover:bg-black hover:text-white rounded-lg transition-colors duration-200 cursor-pointer focus:bg-black focus:text-white active:bg-black active:text-white">
+          <i class="fas fa-chart-line w-5 h-5 mr-3"></i> Dashboard
+        </a>
+        <a href="#" class="flex items-center px-4 py-2.5 text-gray-600 hover:bg-black hover:text-white rounded-lg transition-colors duration-200 cursor-pointer focus:bg-black focus:text-white active:bg-black active:text-white">
+          <i class="fas fa-users w-5 h-5 mr-3"></i> Job Rounds
+        </a>
+        <a href="#" class="flex items-center px-4 py-2.5 text-gray-600 hover:bg-black hover:text-white rounded-lg transition-colors duration-200 cursor-pointer focus:bg-black focus:text-white active:bg-black active:text-white">
+          <i class="fas fa-user-tie w-5 h-5 mr-3"></i> Candidates
+        </a>
+        <a href="#" class="flex items-center px-4 py-2.5 text-gray-600 hover:bg-black hover:text-white rounded-lg transition-colors duration-200 cursor-pointer focus:bg-black focus:text-white active:bg-black active:text-white">
+          <i class="fas fa-chart-bar w-5 h-5 mr-3"></i> Statistics
+        </a>
+        <a (click)="navigatedisplay()" class="flex items-center px-4 py-2.5 text-gray-600 hover:bg-black hover:text-white rounded-lg transition-colors duration-200 cursor-pointer focus:bg-black focus:text-white active:bg-black active:text-white">
+          <i class="fas fa-ticket-alt w-5 h-5 mr-3"></i> Ticket Raise
+        </a>
+        <a href="#" class="flex items-center px-4 py-2.5 text-gray-600 hover:bg-black hover:text-white rounded-lg transition-colors duration-200 cursor-pointer focus:bg-black focus:text-white active:bg-black active:text-white">
+          <i class="fas fa-cog w-5 h-5 mr-3"></i> Settings
+        </a>
+      </div>
+    </nav>
+  </aside>
+
+  <div class="flex-1 ml-64">
+    <header class="fixed top-0 right-0 left-64 bg-white shadow-sm z-20">
+      <div class="flex items-center justify-end px-8 h-16">
+        <div class="flex items-center space-x-6">
+          <button class="relative text-gray-600 hover:text-gray-900">
+            <i class="fas fa-bell text-xl"></i>
+            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">3</span>
+          </button>
+          <div class="relative">
+            <button class="flex items-center space-x-3">
+              <img src="https://creatie.ai/ai/api/search-image?query=A professional headshot of a business person with a warm smile, wearing formal attire, against a neutral background&width=40&height=40&orientation=squarish&flag=b8a37c47-bd78-437c-a1cb-2ac9af9a3531&flag=8aa01670-eb16-41f5-adba-28be94e69fec&flag=a6c95bf5-1596-471a-a3d8-fc7c978c7784&flag=986ce0cc-edf2-45b6-83c4-987c8597b5a5" class="w-8 h-8 rounded-full object-cover" alt="Profile" />
+              <span class="text-sm font-medium text-gray-700">John Smith</span>
+              <i class="fas fa-chevron-down text-xs text-gray-400"></i>
+            </button>
+          </div>
+          <button class="text-gray-600 hover:text-gray-900">
+            <i class="fas fa-sign-out-alt text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="bg-white shadow rounded-lg overflow-hidden mt-20">
+      <div class="px-20 py-20">
+        <div class="text-center mb-8">
+          <h1 class="text-3xl font-bold text-gray-900">{{ ticket?.ticketRaiseName }}</h1>
+          <p class="mt-2 text-gray-600">Job ID: {{ ticket?.ticketRaiseId }}</p>
+          <p class="mt-2 text-gray-600">Lead: {{ ticket?.jobTitle }}</p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-8 mb-8">
+          <div class="space-y-4">
+            <h2 class="text-xl font-semibold text-gray-900">Job Description</h2>
+            <div class="prose max-w-none">
+              <p>{{ ticket?.description }}</p>
+              <h3 class="text-lg font-medium text-gray-900 mt-6">Number of Openings</h3>
+              <p>{{ ticket?.numberOfOpenings }}</p>
+            </div>
+          </div>
+
+          <div class="flex justify-end space-x-4">
+            <button (click)="navigatetoreject()" class="!rounded-button inline-flex items-center px-6 py-3 border border-transparent text-base font-medium text-white bg-red-600 hover:bg-red-700">
+              <i class="fas fa-times mr-2"></i> Reject
+            </button>
+            <button (click)="navigatetodashboard(ticket?.ticketRaiseId)" class="!rounded-button inline-flex items-center px-6 py-3 border border-transparent text-base font-medium text-white bg-green-600 hover:bg-green-700">
+              <i class="fas fa-check mr-2"></i> Accept
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
