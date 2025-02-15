@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { TicketRaise } from '../ticket-raise';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-lopage',
   standalone: true,
-  imports: [HttpClientModule],
+  imports: [HttpClientModule,CommonModule],
   templateUrl: './lopage.component.html',
   styleUrl: './lopage.component.css'
 })
@@ -15,21 +16,22 @@ export class LopageComponent {
   
     url: string = "http://localhost:8080/count"; // API for ticket count
     ticketCount: number = 0;
-    ticketurl: string = "http://localhost:8080/ticketDetails"; // Base API for ticket details
+    ticketurl: string = "http://localhost:8080/allTickets"; // Base API for ticket details
   
-    ticket: TicketRaise = new TicketRaise(); // Store the current ticket object
+    ticket: TicketRaise[] | undefined; // Store the current ticket object
     ticketRaiseId: number | undefined;
+  tickets: TicketRaise[] =[];
   
     constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {}
   
     ngOnInit(): void {
+      this.fetchTicketDetails(); // Fetch new ticket details
       // Get the ticket ID from URL params
       this.getCount();
       this.route.paramMap.subscribe(params => {
         const ticketRaiseId = params.get('ticketRaiseId');
         if (ticketRaiseId) {
           this.ticketRaiseId = +ticketRaiseId; // Convert to number
-          this.fetchTicketDetails(); // Fetch new ticket details
         }
       });
     }
@@ -37,13 +39,13 @@ export class LopageComponent {
     // Fetch ticket details using ticket ID
     fetchTicketDetails(): void {
       // Fetch the new ticket and replace the existing ticket object
-      this.http.get<TicketRaise>(`${this.ticketurl}/${this.ticketRaiseId}`).subscribe(
-        (data: TicketRaise) => {
-          this.ticket = data; // Assign new ticket data
-          console.log("Fetched Ticket Details:", this.ticket);
+      this.http.get<TicketRaise[]>(this.ticketurl).subscribe(
+        (data) => {
+          console.log("Fetched Tickets:", data);
+          this.tickets = data; // Change 'ticket' to 'tickets'
         },
-        (error: any) => {
-          console.error('Error fetching ticket details:', error);
+        (error) => {
+          console.error('Error fetching tickets:', error);
         }
       );
     }

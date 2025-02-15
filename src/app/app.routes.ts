@@ -7,6 +7,7 @@ import { TicketdetailsComponent } from './ticketdetails/ticketdetails.component'
 import { StatusComponent } from './status/status.component';
 import { LopageComponent } from './lopage/lopage.component';
 import { AddcandidateComponent } from './addcandidate/addcandidate.component';
+import { ShowcandidateComponent } from './showcandidate/showcandidate.component';
 
 export const routes: Routes = [
   { path: '', component: LoginuserComponent }, // Default route (login)
@@ -19,6 +20,8 @@ export const routes: Routes = [
   { path: 'app-lopage', component: LopageComponent },
   { path: 'app-addcandidate', component:  AddcandidateComponent},
   { path: 'app-ticketdetails/:ticketId', component: TicketdetailsComponent }, 
+  
+  { path: 'app-showcandidate', component: ShowcandidateComponent }, 
   // { path: 'app-ticketdetails', component: TicketdetailsComponent },
   { path: '**', redirectTo: '' }, // Redirect invalid URLs to the login page
 ];

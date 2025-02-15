@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { TicketRaise } from '../ticket-raise';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Candidate } from '../candidate';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-addcandidate',
   standalone: true,
-  imports: [HttpClientModule],
+  imports: [HttpClientModule,FormsModule],
   templateUrl: './addcandidate.component.html',
   styleUrl: './addcandidate.component.css'
 })
@@ -20,6 +22,7 @@ export class AddcandidateComponent {
   
     ticket: TicketRaise = new TicketRaise(); // Store the current ticket object
     ticketRaiseId: number | undefined;
+ngForm: any;
   
     constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {}
   
@@ -60,5 +63,44 @@ export class AddcandidateComponent {
     onRoundClicklo(){
       this.router.navigate(['/app-lopage']);
     }
+
+
+    candidate: Candidate = new Candidate();
+    selectedFile: File | null = null;
+    private apiUrl = "http://localhost:8080/addcandidate"; // Backend API
   
+    
+  
+    onFileSelected(event: any): void {
+      const file = event.target.files[0];
+    
+      if (file) {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          this.candidate.resume = reader.result as string; // Store Base64 string in candidate object
+        };
+        reader.onerror = (error) => {
+          console.error("Error converting file:", error);
+        };
+      }
+    }
+    
+  
+    onSubmit(): void {
+      console.log("Sending Candidate Data:", this.candidate); // Debugging log
+      this.http.post<Candidate>(this.apiUrl, this.candidate).subscribe(
+        (response: Candidate) => {
+          console.log("Candidate added successfully:", response);
+          alert("Candidate added successfully!");
+        },
+        (error: any) => {
+          console.error("Error adding candidate:", error);
+          alert("Failed to add candidate!");
+        }
+      );
+    }
+  
+    
+    
 }
