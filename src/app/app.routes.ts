@@ -10,8 +10,10 @@ import { AddcandidateComponent } from './addcandidate/addcandidate.component';
 import { ShowcandidateComponent } from './showcandidate/showcandidate.component';
 
 export const routes: Routes = [
-  { path: '', component: LoginuserComponent }, // Default route (login)
+ { path: '', component: LoginuserComponent }, // Default route (login)
   
+  // { path: '', component: DashboardComponent },
+
     { path: 'app-dashboard/:ticketRaiseId', component: DashboardComponent },
   { path: 'app-dashboard', component: DashboardComponent },
   { path: 'app-home', component: HomeComponent }, // Home page
