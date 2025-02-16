@@ -1,3 +1,5 @@
+<body class="bg-gray-50">
+
 <div class="flex h-screen">
   <aside class="fixed inset-y-0 left-0 w-64 bg-white shadow-lg z-30">
     <div class="flex items-center justify-between h-16 border-b px-4">
@@ -141,10 +143,10 @@
       </div>
 
       <div class="container mx-auto p-4">
-        <div class="bg-white rounded-lg shadow-sm">
-          <div class="p-6 border-b">
-            <h2 class="text-lg font-semibold">Recruitment Status</h2>
-          </div>
+          <div class="bg-white rounded-lg shadow-sm">
+                    <div class="p-6 border-b">
+                        <h2 class="text-lg font-semibold">Recruitment Status</h2>
+                    </div>
           <div class="overflow-x-auto">
             <table class="w-full">
               <thead>
@@ -177,15 +179,15 @@
                     ticket.ticketRaiseName }}</td>
                   <td class="px-6 py-4 whitespace-nowrap">
                     <div class="flex space-x-2">
-                      <button class="px-2 py-1 text-xs rounded"
+                      <button class="px-2 py-1 text-xs rounded bg-green-100 text-green-800 hover:bg-green-200"
                         (click)="onRoundClicklo()">L0</button>
-                      <button class="px-2 py-1 text-xs rounded"
+                      <button class="px-2 py-1 text-xs rounded bg-gray-100 text-gray-800 hover:bg-gray-200"
                         (click)="onRoundClick('L1')">L1</button>
-                      <button class="px-2 py-1 text-xs rounded"
+                      <button class="px-2 py-1 text-xs rounded bg-gray-100 text-gray-800 hover:bg-gray-200"
                         (click)="onRoundClick('L2')">L2</button>
-                      <button class="px-2 py-1 text-xs rounded"
+                      <button class="px-2 py-1 text-xs rounded bg-gray-100 text-gray-800 hover:bg-gray-200"
                         (click)="onRoundClick('L3')">L3</button>
-                      <button class="px-2 py-1 text-xs rounded"
+                      <button class="px-2 py-1 text-xs rounded bg-gray-100 text-gray-800 hover:bg-gray-200"
                         (click)="onRoundClick('L4')">L4</button>
 
                     </div>
@@ -213,3 +215,4 @@
     </main>
   </div>
 </div>
+</body>
